@@ -23,7 +23,7 @@ class ParseException(Exception):
     pass
 
 class Gcd:
-    def __init__(self, filename: str=None):
+    def __init__(self, filename, str=None):
         self.filename = filename
         self.struct = []
         self.is_truncated = False
@@ -196,7 +196,7 @@ class Gcd:
 
     @staticmethod
     def from_recipe(recipe_file: str):
-        gcd = Gcd()
+        gcd = Gcd(None)
         rcp = configparser.ConfigParser()
         rcp.read(recipe_file)
         if rcp["GCD_DUMP"]["dump_by"] != "grmn-gcd":

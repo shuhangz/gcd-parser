@@ -187,3 +187,21 @@ easy way to check the update servers for new devices.
 To find future devices, you can supply a parameter (can be anything) and it will output 300 more hw_ids
 after the last known.
 
+How to downgrade the firmware of vivoactive 3
+------
+The idea is to repack a 'higher' version of the firmware from the version you want to downgrade. 
+If the current version of your device is 7.50, you want to roll back to 7.30. 
+1. Download the 7.30 GCD file from the garmin website. The link can be fetched from `get_updates.py`.
+2. Use `gcddump.py` to dump the file.
+3. Edit the rcp file, input a higher version(e.g 0x02f8), and mark it as reset. 
+    ```
+    # Reset/Downgrade flag
+    0x000b = 0x01
+    # Firmware version
+    0x100d = 0x02f8
+    ```
+4. Use `gcdcompile.py` to recompile the firmware.
+5. Rename the new firmware to `GUPDATE.gcd` and put it to /GARMIN folder.
+6. Unplug the watch, let it downgrade automatically.
+
+**WARNING: Use at your own risk. DO NOT roll back to 6.x when your firmware is 7.x.**
